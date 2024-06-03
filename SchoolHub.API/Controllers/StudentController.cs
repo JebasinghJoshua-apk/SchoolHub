@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using SchoolHub.API.Model;
 using System.Collections.Generic;
+using System.Data;
 
 namespace SchoolHub.API.Controllers
 {
@@ -41,6 +42,23 @@ namespace SchoolHub.API.Controllers
                 studentList.Add(student);
             }
             return studentList;
+        }
+
+        [HttpPost]
+        [Route("UpdateStudent")]
+        public bool UpdateStudent(StudentModel studentModel)
+        {
+            var connectionString = "Server=tcp:schoolhub.database.windows.net,1433;Initial Catalog=school_hub;Persist Security Info=False;User ID=schooladmin;Password=Password123#;TrustServerCertificate=False;";
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            var sqlQuery = @"update student set name = @studentName where id = @studentId";
+            SqlCommand cmd = new SqlCommand(sqlQuery, connection);
+            cmd.Parameters.Add("@studentName",SqlDbType.VarChar);
+            cmd.Parameters.Add("@studentId", SqlDbType.Int);
+            cmd.Parameters["@studentName"].Value = studentModel.StudentName;
+            cmd.Parameters["@studentId"].Value = studentModel.Id;
+            int rowsAffected =  cmd.ExecuteNonQuery();
+            return rowsAffected > 0;
         }
     }
 }
