@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using SchoolHub.API.Model;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace SchoolHub.API.Controllers
 {
@@ -10,6 +11,46 @@ namespace SchoolHub.API.Controllers
     [Route("[controller]")]
     public class StudentController : Controller
     {
+        [HttpGet]
+        [Route("LearnLINQ")]
+        public bool LearnLINQ()
+        {
+            List<StudentModel> studentList = new List<StudentModel>();
+            studentList.Add(new StudentModel()
+            {
+                Id= 1,
+                StudentName = "Sundar",
+                BloodGroup = "O+"
+            });
+            studentList.Add(new StudentModel()
+            {
+                Id = 2,
+                StudentName = "Kannan",
+                BloodGroup = "A+"
+            });
+            studentList.Add(new StudentModel()
+            {
+                Id = 3,
+                StudentName = "Guru",
+                BloodGroup = "O+"
+            });
+            //Assuming the above code already mapped; 
+
+            //Language Integrated Query (LINQ)
+            var studentNameList =
+            from student in studentList
+            where student.BloodGroup == "O+"
+            select student.StudentName;
+
+            //Lamda Expression
+            var LStudentNameList = studentList.Where(x => x.BloodGroup == "O+")
+                .Select(x => x.StudentName)
+                .ToList();
+
+
+            return true;
+        }
+
         [HttpGet]
         [Route("GetStudentListByClass/{className}")]
         public List<StudentModel> GetStudentListByClass(string className)
@@ -41,6 +82,7 @@ namespace SchoolHub.API.Controllers
                 };
                 studentList.Add(student);
             }
+            connection.Close();
             return studentList;
         }
 
