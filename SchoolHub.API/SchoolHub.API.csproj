@@ -10,4 +10,7 @@
   <ItemGroup>
     <Folder Include="Data\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="efpt.config.json.user" />
+  </ItemGroup>
 </Project>

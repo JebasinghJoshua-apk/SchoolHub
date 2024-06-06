@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SchoolHub.API.Model;
+using SchoolHub.Models;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -18,7 +20,7 @@ namespace SchoolHub.API.Controllers
             List<StudentModel> studentList = new List<StudentModel>();
             studentList.Add(new StudentModel()
             {
-                Id= 1,
+                Id = 1,
                 StudentName = "Sundar",
                 BloodGroup = "O+"
             });
@@ -48,6 +50,35 @@ namespace SchoolHub.API.Controllers
                 .ToList();
 
 
+            return true;
+        }
+
+
+        [HttpGet]
+        [Route("AddStudent")]
+        public bool AddStudent()
+        {
+            SchoolHubDBContext schoolHubDBContext = new SchoolHubDBContext();
+            schoolHubDBContext.Siblings.Add(
+                new Sibling()
+                {
+                    SiblingName = "Karthick"
+                }
+            );
+            schoolHubDBContext.SaveChanges();
+            return true;
+        }
+
+
+        [HttpGet]
+        [Route("GetStudentList")]
+        public bool GetStudentList()
+        {
+            SchoolHubDBContext schoolHubDBContext = new SchoolHubDBContext();
+            var students = schoolHubDBContext.Students
+                           .Include(student => student.Siblings)
+                           .Include(student => student.Class)
+                           .ToList();
             return true;
         }
 
