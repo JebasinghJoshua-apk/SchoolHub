@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SchoolHub.API.Model;
+using SchoolHub.API.ViewModel;
 using SchoolHub.Models;
 using System.Collections.Generic;
 using System.Data;
@@ -53,7 +54,6 @@ namespace SchoolHub.API.Controllers
             return true;
         }
 
-
         [HttpGet]
         [Route("AddStudent")]
         public bool AddStudent()
@@ -69,7 +69,6 @@ namespace SchoolHub.API.Controllers
             return true;
         }
 
-
         [HttpGet]
         [Route("GetStudentList")]
         public bool GetStudentList()
@@ -80,6 +79,23 @@ namespace SchoolHub.API.Controllers
                            .Include(student => student.Class)
                            .ToList();
             return true;
+        }
+
+        [HttpGet]
+        [Route("GetTeachersList")]
+        public List<TeacherViewModel> GetTeachersList()
+        {
+            SchoolHubDBContext schoolHubDBContext = new SchoolHubDBContext();
+            var iqueryableTeacherList = schoolHubDBContext.Teachers.Select(x => new TeacherViewModel()
+            {
+                EmployeeId = x.EmployeeId,
+                Name = x.Name,
+                Age = x.Age,
+                Gender = x.Gender
+            }).Where(x=> x.Gender == "Female");
+
+            var teacherList = iqueryableTeacherList.ToList();
+            return teacherList;
         }
 
         [HttpGet]
