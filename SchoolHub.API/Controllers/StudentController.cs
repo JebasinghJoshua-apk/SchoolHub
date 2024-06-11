@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using SchoolHub.API.Model;
 using SchoolHub.API.ViewModel;
 using System.Collections.Generic;
@@ -84,16 +82,16 @@ namespace SchoolHub.API.Controllers
         [Route("GetStudentsList")]
         public List<StudentViewModel> GetStudentsList()
         {
-            SchoolHubDBContext schoolHubDBContext = new SchoolHubDBContext();
-            var iqueryableStudentList = schoolHubDBContext.Students.Select(x => new StudentViewModel()
-            {
-                Name = x.Name,
-                Age = x.Age,
-                Gender = x.Gender,
-                BloodGroup = x.BloodGroup
-            });
-            var studentList = iqueryableStudentList.ToList();
-            return studentList;
+            //SchoolHubDBContext schoolHubDBContext = new SchoolHubDBContext();
+            //var iqueryableStudentList = schoolHubDBContext.Students.Select(x => new StudentViewModel()
+            //{
+            //    Name = x.Name,
+            //    Age = x.Age,
+            //    Gender = x.Gender,
+            //    BloodGroup = x.BloodGroup
+            //});
+            //var studentList = iqueryableStudentList.ToList();
+            return new List<StudentViewModel>();
 
         }
 
