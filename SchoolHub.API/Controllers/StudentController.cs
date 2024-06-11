@@ -3,7 +3,6 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SchoolHub.API.Model;
 using SchoolHub.API.ViewModel;
-using SchoolHub.Models;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -58,14 +57,14 @@ namespace SchoolHub.API.Controllers
         [Route("AddStudent")]
         public bool AddStudent()
         {
-            SchoolHubDBContext schoolHubDBContext = new SchoolHubDBContext();
-            schoolHubDBContext.Siblings.Add(
-                new Sibling()
-                {
-                    SiblingName = "Karthick"
-                }
-            );
-            schoolHubDBContext.SaveChanges();
+            //SchoolHubDBContext schoolHubDBContext = new SchoolHubDBContext();
+            //schoolHubDBContext.Siblings.Add(
+            //    new Sibling()
+            //    {
+            //        SiblingName = "Karthick"
+            //    }
+            //);
+            //schoolHubDBContext.SaveChanges();
             return true;
         }
 
@@ -73,29 +72,29 @@ namespace SchoolHub.API.Controllers
         [Route("GetStudentList")]
         public bool GetStudentList()
         {
-            SchoolHubDBContext schoolHubDBContext = new SchoolHubDBContext();
-            var students = schoolHubDBContext.Students
-                           .Include(student => student.Siblings)
-                           .Include(student => student.Class)
-                           .ToList();
-            return true;
+        //    SchoolHubDBContext schoolHubDBContext = new SchoolHubDBContext();
+        //    var students = schoolHubDBContext.Students
+        //                   .Include(student => student.Siblings)
+        //                   .Include(student => student.Class)
+        //                   .ToList();
+           return true;
         }
 
         [HttpGet]
         [Route("GetTeachersList")]
         public List<TeacherViewModel> GetTeachersList()
         {
-            SchoolHubDBContext schoolHubDBContext = new SchoolHubDBContext();
-            var iqueryableTeacherList = schoolHubDBContext.Teachers.Select(x => new TeacherViewModel()
-            {
-                EmployeeId = x.EmployeeId,
-                Name = x.Name,
-                Age = x.Age,
-                Gender = x.Gender
-            }).Where(x=> x.Gender == "Female");
+            //SchoolHubDBContext schoolHubDBContext = new SchoolHubDBContext();
+            //var iqueryableTeacherList = schoolHubDBContext.Teachers.Select(x => new TeacherViewModel()
+            //{
+            //    EmployeeId = x.EmployeeId,
+            //    Name = x.Name,
+            //    Age = x.Age,
+            //    Gender = x.Gender
+            //}).Where(x=> x.Gender == "Female");
 
-            var teacherList = iqueryableTeacherList.ToList();
-            return teacherList;
+            //var teacherList = iqueryableTeacherList.ToList();
+            return new List<TeacherViewModel>();
         }
 
         [HttpGet]

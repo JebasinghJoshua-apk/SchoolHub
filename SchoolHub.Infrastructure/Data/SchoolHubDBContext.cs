@@ -3,8 +3,9 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using SchoolHub.Core.Domain;
 
-namespace SchoolHub.Models;
+namespace SchoolHub.Infrastructure;
 
 public partial class SchoolHubDBContext : DbContext
 {
