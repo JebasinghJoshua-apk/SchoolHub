@@ -13,6 +13,7 @@ namespace SchoolHub.API.Controllers
     public class StudentController : Controller
     {
         readonly IStudentService _studentService;
+        //constructor injection
         public StudentController(IStudentService studentService)
         {
             _studentService = studentService;
