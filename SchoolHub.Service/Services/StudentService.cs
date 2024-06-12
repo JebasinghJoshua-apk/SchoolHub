@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolHub.Infrastructure;
+using SchoolHub.Service.Interfaces;
 using SchoolHub.Service.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SchoolHub.Service.Services
 {
-    public class StudentService
+    public class StudentService : IStudentService
     {
         public List<StudentViewModel> GetStudentListByClass(string className, string sectionName)
         {

@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SchoolHub.Service.Interfaces;
+using SchoolHub.Service.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,9 @@ namespace SchoolHub.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            //Dependency Injection
+            services.AddScoped<IStudentService, StudentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,5 +52,7 @@ namespace SchoolHub.API
                 endpoints.MapControllers();
             });
         }
+
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SchoolHub.Service.Interfaces;
 using SchoolHub.Service.Services;
 using SchoolHub.Service.ViewModel;
 using System.Collections.Generic;
@@ -11,12 +12,17 @@ namespace SchoolHub.API.Controllers
     [Route("[controller]")]
     public class StudentController : Controller
     {
+        readonly IStudentService _studentService;
+        public StudentController(IStudentService studentService)
+        {
+            _studentService = studentService;
+        }
+
         [HttpGet]
         [Route("GetStudentListByClass/{className}/{sectionName}")]
         public List<StudentViewModel> GetStudentListByClass(string className, string sectionName)
         {
-            StudentService studentService = new StudentService();
-            var studentList = studentService.GetStudentListByClass(className, sectionName);
+            var studentList = _studentService.GetStudentListByClass(className, sectionName);
             return studentList;
         }
     }
