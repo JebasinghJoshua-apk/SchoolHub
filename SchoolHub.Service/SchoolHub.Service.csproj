@@ -7,12 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SchoolHub.Core\SchoolHub.Domain.csproj" />
+    <ProjectReference Include="..\SchoolHub.Infrastructure\SchoolHub.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
