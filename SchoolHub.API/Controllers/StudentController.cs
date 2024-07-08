@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolHub.Service.Interfaces;
 using SchoolHub.Service.Services;
-using SchoolHub.Service.ViewModel;
+using SchoolHub.Service.ViewModel.Student;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -27,6 +27,12 @@ namespace SchoolHub.API.Controllers
             return studentList;
         }
 
-        //Add New Sibling
+        [HttpPost]
+        [Route("AddStudent")]
+        public bool AddStudent(AddStudentViewModel addStudentViewModel)
+        {
+            var result = _studentService.AddStudent(addStudentViewModel);
+            return result;
+        }
     }
 }

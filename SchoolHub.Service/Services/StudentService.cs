@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SchoolHub.Core.Domain;
 using SchoolHub.Infrastructure;
 using SchoolHub.Service.Interfaces;
-using SchoolHub.Service.ViewModel;
+using SchoolHub.Service.ViewModel.Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +23,30 @@ namespace SchoolHub.Service.Services
             var studentViewList = studentList.Select(x => new StudentViewModel()
             {
                 Name = x.Name,
-                Age = x.Age,
+                Age = DateTime.Today.Year - x.DateOfBirth.Year,
                 BloodGroup = x.BloodGroup,
                 Gender = x.Gender,
                 PhotoFilePath = x.PhotoFilePath,
             }).ToList();
 
             return studentViewList;
+        }
+
+        public bool AddStudent(AddStudentViewModel addStudentViewModel)
+        {
+            var schoolHubDBContext = new SchoolHubDBContext();
+            schoolHubDBContext.Students.Add(new Student
+            {
+                Name = addStudentViewModel.StudentName,
+                DateOfBirth = addStudentViewModel.DateOfBirth,
+                Gender = addStudentViewModel.Gender,
+                FatherName = addStudentViewModel.FatherName,
+                MotherName = addStudentViewModel.MotherName,
+                ContactNumber1 = addStudentViewModel.ContactNumber1,
+                ContactNumber2 = addStudentViewModel.ContactNumber2
+            });
+            var result = schoolHubDBContext.SaveChanges();
+            return (result > 0);
         }
     }
 }

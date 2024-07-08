@@ -1,4 +1,4 @@
-﻿namespace SchoolHub.Service.ViewModel
+﻿namespace SchoolHub.Service.ViewModel.Student
 {
     public class StudentViewModel
     {
