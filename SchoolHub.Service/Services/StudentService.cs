@@ -35,6 +35,7 @@ namespace SchoolHub.Service.Services
         public bool AddStudent(AddStudentViewModel addStudentViewModel)
         {
             var schoolHubDBContext = new SchoolHubDBContext();
+            var classobj=schoolHubDBContext.Classes.FirstOrDefault(x => x.ClassName == "5" && x.Section == "A");
             schoolHubDBContext.Students.Add(new Student
             {
                 Name = addStudentViewModel.StudentName,
@@ -43,7 +44,9 @@ namespace SchoolHub.Service.Services
                 FatherName = addStudentViewModel.FatherName,
                 MotherName = addStudentViewModel.MotherName,
                 ContactNumber1 = addStudentViewModel.ContactNumber1,
-                ContactNumber2 = addStudentViewModel.ContactNumber2
+                ContactNumber2 = addStudentViewModel.ContactNumber2,
+                BloodGroup = addStudentViewModel.BloodGroup,
+                Class = classobj
             });
             var result = schoolHubDBContext.SaveChanges();
             return (result > 0);
