@@ -17,5 +17,7 @@ namespace SchoolHub.Service.ViewModel.Student
         public string ContactNumber1 { get; set; }
         public string ContactNumber2 { get; set; }
         public string BloodGroup { get; set; }
+        public string ClassStandard { get; set; }
+        public string ClassSection { get; set; }
     }
 }

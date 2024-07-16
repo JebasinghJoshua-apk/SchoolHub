@@ -35,9 +35,11 @@ namespace SchoolHub.Service.Services
         public bool AddStudent(AddStudentViewModel addStudentViewModel)
         {
             var schoolHubDBContext = new SchoolHubDBContext();
-            var classobj=schoolHubDBContext.Classes.FirstOrDefault(x => x.ClassName == "5" && x.Section == "A");
+            var classobj = schoolHubDBContext.Classes.FirstOrDefault(x => x.ClassName == addStudentViewModel.ClassStandard && x.Section == addStudentViewModel.ClassSection);
+            var classStudentCount = schoolHubDBContext.Students.Count(x => x.ClassId == classobj.Id);
             schoolHubDBContext.Students.Add(new Student
             {
+                RollNumber = Convert.ToString(classStudentCount + 1),
                 Name = addStudentViewModel.StudentName,
                 DateOfBirth = addStudentViewModel.DateOfBirth,
                 Gender = addStudentViewModel.Gender,
@@ -46,7 +48,7 @@ namespace SchoolHub.Service.Services
                 ContactNumber1 = addStudentViewModel.ContactNumber1,
                 ContactNumber2 = addStudentViewModel.ContactNumber2,
                 BloodGroup = addStudentViewModel.BloodGroup,
-                Class = classobj
+                Class = classobj,
             });
             var result = schoolHubDBContext.SaveChanges();
             return (result > 0);
