@@ -32,6 +32,12 @@ namespace SchoolHub.Service.Services
             return studentViewList;
         }
 
+        public List<string> GetClassList()
+        {
+            var schoolHubDBContext = new SchoolHubDBContext();
+            var classList = schoolHubDBContext.Classes.Select(x=> x.ClassName).ToList();
+            return classList;
+        }
         public bool AddStudent(AddStudentViewModel addStudentViewModel)
         {
             var schoolHubDBContext = new SchoolHubDBContext();

@@ -34,5 +34,13 @@ namespace SchoolHub.API.Controllers
             var result = _studentService.AddStudent(addStudentViewModel);
             return result;
         }
+        [HttpGet]
+        [Route("GetClassList")]
+        public List<string> GetClassList()
+        {
+            var classList = _studentService.GetClassList();
+            return classList;
+        }
+        // GetSectionListByClass
     }
 }
