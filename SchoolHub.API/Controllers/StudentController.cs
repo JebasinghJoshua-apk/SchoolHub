@@ -42,5 +42,13 @@ namespace SchoolHub.API.Controllers
             return classList;
         }
         // GetSectionListByClass
+        [HttpGet]
+        [Route("GetSectionListByClass/{className}")]
+        
+        public List<string>GetSectionlistByClass( string className)
+        {
+            var sectionList = _studentService.GetSectionListByClass(className);
+            return sectionList;
+        }
     }
 }

@@ -6,6 +6,7 @@ using SchoolHub.Service.ViewModel.Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,6 +38,12 @@ namespace SchoolHub.Service.Services
             var schoolHubDBContext = new SchoolHubDBContext();
             var classList = schoolHubDBContext.Classes.Select(x=> x.ClassName).ToList();
             return classList;
+        }
+        public List<string> GetSectionListByClass(string className)
+        {
+            var schoolHubDBContext = new SchoolHubDBContext();
+            var sectionList = schoolHubDBContext.Classes.Where(x=>x.ClassName==className).Select(x => x.Section).ToList();
+            return sectionList;
         }
         public bool AddStudent(AddStudentViewModel addStudentViewModel)
         {

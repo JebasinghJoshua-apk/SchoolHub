@@ -7,5 +7,7 @@ namespace SchoolHub.Service.Interfaces
         List<StudentViewModel> GetStudentListByClass(string className, string sectionName);
         bool AddStudent(AddStudentViewModel addStudentViewModel);
         List<string> GetClassList();
+
+        List<string> GetSectionListByClass(string className);
     }
 }
