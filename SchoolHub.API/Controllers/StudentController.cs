@@ -41,11 +41,11 @@ namespace SchoolHub.API.Controllers
             var classList = _studentService.GetClassList();
             return classList;
         }
-        // GetSectionListByClass
+        
         [HttpGet]
         [Route("GetSectionListByClass/{className}")]
-        
         public List<string>GetSectionlistByClass( string className)
+        
         {
             var sectionList = _studentService.GetSectionListByClass(className);
             return sectionList;

@@ -37,7 +37,7 @@ namespace SchoolHub.Service.Services
         {
             var schoolHubDBContext = new SchoolHubDBContext();
             var classList = schoolHubDBContext.Classes.Select(x=> x.ClassName).ToList();
-            return classList;
+            return classList.DistinctBy(x => x).ToList();
         }
         public List<string> GetSectionListByClass(string className)
         {
