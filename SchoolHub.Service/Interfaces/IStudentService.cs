@@ -10,4 +10,4 @@ namespace SchoolHub.Service.Interfaces
 
         List<string> GetSectionListByClass(string className);
     }
-}
+} 

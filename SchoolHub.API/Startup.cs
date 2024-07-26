@@ -33,6 +33,7 @@ namespace SchoolHub.API
 
             //Dependency Injection
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IClassService, ClassService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

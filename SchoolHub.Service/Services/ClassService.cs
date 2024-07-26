@@ -1,4 +1,5 @@
 ﻿using SchoolHub.Infrastructure;
+using SchoolHub.Service.Interfaces;
 using SchoolHub.Service.ViewModel.Class;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SchoolHub.Service.Services
 {
-    public class ClassService
+    public class ClassService : IClassService
     {
         public List<ClassViewModel> GetClasses()
         {
