@@ -2,6 +2,7 @@
 using SchoolHub.Service.Interfaces;
 using SchoolHub.Service.Services;
 using SchoolHub.Service.ViewModel.Class;
+using SchoolHub.Service.ViewModel.Student;
 using System.Collections.Generic;
 
 namespace SchoolHub.API.Controllers
@@ -26,6 +27,14 @@ namespace SchoolHub.API.Controllers
         {
             var classes = _classService.GetClasses();
             return classes;
+        }
+
+        [HttpPost]
+        [Route("AddClass")]
+        public bool AddClass(AddClassViewModel addClassViewModel)
+        {
+            var result = _classService.AddClass(addClassViewModel);
+            return result;
         }
     }
 }
