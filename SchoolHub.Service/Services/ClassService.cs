@@ -3,6 +3,7 @@ using SchoolHub.Infrastructure;
 using SchoolHub.Service.Interfaces;
 using SchoolHub.Service.ViewModel.Class;
 using SchoolHub.Service.ViewModel.Student;
+using SchoolHub.Service.ViewModel.Teacher;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,13 @@ namespace SchoolHub.Service.Services
             });
             var result = schoolHubDBContext.SaveChanges();
             return (result > 0);
+        }
+
+        public List<SelectTeacherViewModel> GetTeacherList()
+        {
+            var schoolHubDBContext = new SchoolHubDBContext();
+            var teacherlist = schoolHubDBContext.Teachers.Select(x => new SelectTeacherViewModel() { Id = x.Id, Name = x.Name }).ToList();
+            return teacherlist;
         }
     }
 }

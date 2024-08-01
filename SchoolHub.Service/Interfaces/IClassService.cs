@@ -1,4 +1,5 @@
 ﻿using SchoolHub.Service.ViewModel.Class;
+using SchoolHub.Service.ViewModel.Teacher;
 
 namespace SchoolHub.Service.Interfaces
 {
@@ -7,5 +8,6 @@ namespace SchoolHub.Service.Interfaces
         List<ClassViewModel> GetClasses();
 
         bool AddClass(AddClassViewModel addClassViewModel);
+        List<SelectTeacherViewModel> GetTeacherList();
     }
 }

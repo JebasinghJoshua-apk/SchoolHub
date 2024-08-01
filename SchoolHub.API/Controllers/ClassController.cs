@@ -3,6 +3,7 @@ using SchoolHub.Service.Interfaces;
 using SchoolHub.Service.Services;
 using SchoolHub.Service.ViewModel.Class;
 using SchoolHub.Service.ViewModel.Student;
+using SchoolHub.Service.ViewModel.Teacher;
 using System.Collections.Generic;
 
 namespace SchoolHub.API.Controllers
@@ -35,6 +36,14 @@ namespace SchoolHub.API.Controllers
         {
             var result = _classService.AddClass(addClassViewModel);
             return result;
+        }
+
+        [HttpGet]
+        [Route("GetTeacherList")]
+        public List<SelectTeacherViewModel> GetTeacherList()
+        {
+            var teacherList = _classService.GetTeacherList();
+            return teacherList;
         }
     }
 }
